@@ -1,6 +1,5 @@
-<img width="782" height="1600" alt="image" src="https://github.com/user-attachments/assets/494ef9c0-710c-4c26-97f6-be355c7b8285" /># onboard_screen_alarm_app
-
-
+## onboard_screen_alarm_app
+---
 ## Objectives Achieved
 - Onboarding screens
 - Location permission prompt
