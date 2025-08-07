@@ -29,7 +29,7 @@
     flutter_local_notifications: ^19.4.0
     timezone: ^0.10.1
     intl: ^0.18.1
-    
+
 or Run 
     ```bash
     flutter pub add provider smooth_page_indicator shared_preferences geolocator permission_handler cupertino_icons geocoding geocoding flutter_local_notifications timezone intl
