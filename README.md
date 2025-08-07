@@ -2,9 +2,10 @@
 **A flutter project to demonstrate my problem-solving screen**
 
 ## Objectives
-- To implement Onboarding screens
+- To implement Onboarding screens (once-first-time)
 - To implement the Location permission prompt
 - To implement Alarm/Notification setting functionality
+- To store the alarms in a local database 
 - To build a Flutter mobile platform.
 - To manage state and UI in Flutter with widgets.
 - To integrate 3rd party libraries.
