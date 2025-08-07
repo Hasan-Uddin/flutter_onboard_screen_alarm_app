@@ -7,13 +7,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geocoding/geocoding.dart';
 
 class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  bool _checkingPermission = false;
-
   @override
   void initState() {
     super.initState();
@@ -24,9 +24,7 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   Future<void> _checkLocationPermission() async {
-    setState(() {
-      _checkingPermission = true;
-    });
+    setState(() {});
 
     final status = await Permission.location.request();
 
@@ -35,9 +33,7 @@ class _LocationScreenState extends State<LocationScreen> {
       //Navigator.pushReplacementNamed(context, '/alarm');
       fetchAndSaveLocation();
     } else {
-      setState(() {
-        _checkingPermission = false;
-      });
+      setState(() {});
     }
   }
 
@@ -74,9 +70,7 @@ class _LocationScreenState extends State<LocationScreen> {
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       print('Error getting location: $e');
-      setState(() {
-        _checkingPermission = false;
-      });
+      setState(() {});
     }
   }
 
@@ -115,7 +109,7 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
 
               SizedBox(height: 10),
-              Image.asset(DirStrings.onBoarding_img_4),
+              Center(child: Image.asset(DirStrings.onBoarding_img_4)),
               SizedBox(height: 20),
               Container(
                 //height: 60,
@@ -126,7 +120,6 @@ class _LocationScreenState extends State<LocationScreen> {
                     TextButton.icon(
                       onPressed: () {
                         fetchAndSaveLocation();
-                        Navigator.pushReplacementNamed(context, '/home');
                       },
                       //_checkingPermission ? null: _checkLocationPermission,
                       label: Text(

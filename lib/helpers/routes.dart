@@ -7,6 +7,6 @@ Map<String, WidgetBuilder> applicationRoutes() {
   return <String, WidgetBuilder>{
     '/location': (BuildContext context) => LocationScreen(),
     '/onboarding': (BuildContext context) => OnboardingScreen(),
-    '/home': (BuildContext context) => alarmHome(),
+    '/home': (BuildContext context) => AlarmHome(),
   };
 }

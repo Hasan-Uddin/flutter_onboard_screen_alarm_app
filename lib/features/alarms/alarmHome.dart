@@ -8,9 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 
-class alarmHome extends StatefulWidget {
+class AlarmHome extends StatefulWidget {
+  const AlarmHome({super.key});
   @override
-  _alarmHomeState createState() => _alarmHomeState();
+  _AlarmHomeState createState() => _AlarmHomeState();
 }
 
 class Alarm {
@@ -36,7 +37,7 @@ class Alarm {
   );
 }
 
-class _alarmHomeState extends State<alarmHome> {
+class _AlarmHomeState extends State<AlarmHome> {
   String? _userLocation;
   List<Alarm> alarms = [];
 
@@ -133,88 +134,83 @@ class _alarmHomeState extends State<alarmHome> {
               padding: EdgeInsets.all(20),
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Selected Location",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Selected Location",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                          color: Colors.grey[300],
-                        ),
-                        SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            _userLocation ?? '',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 12),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[800],
-                        foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 14,
-                        ),
-                        minimumSize: Size(double.infinity, 53),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.location_on_outlined, color: Colors.grey[300]),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          _userLocation ?? '',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
-                      onPressed: () async {
-                        TimeOfDay? picked = await showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay.now(),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.grey[800],
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
+                      minimumSize: Size(double.infinity, 53),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () async {
+                      TimeOfDay? picked = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+
+                      if (picked != null) {
+                        var now = DateTime.now();
+                        var alarmDateTime = DateTime(
+                          now.year,
+                          now.month,
+                          now.day,
+                          picked.hour,
+                          picked.minute,
                         );
 
-                        if (picked != null) {
-                          var now = DateTime.now();
-                          var alarmDateTime = DateTime(
-                            now.year,
-                            now.month,
-                            now.day,
-                            picked.hour,
-                            picked.minute,
+                        if (alarmDateTime.isBefore(now)) {
+                          alarmDateTime = alarmDateTime.add(
+                            const Duration(days: 1),
                           );
-
-                          if (alarmDateTime.isBefore(now)) {
-                            alarmDateTime = alarmDateTime.add(
-                              const Duration(days: 1),
-                            );
-                          }
-
-                          final newAlarm = Alarm(
-                            id: DateTime.now().millisecondsSinceEpoch % 100000,
-                            alarmDateTime: alarmDateTime,
-                          );
-
-                          setState(() {
-                            alarms.add(newAlarm);
-                          });
-
-                          await _scheduleAlarm(newAlarm);
-                          await _saveAlarms();
                         }
-                      },
 
-                      child: Text('Add Alarm', style: TextStyle(fontSize: 16)),
-                      // styling same as before...
-                    ),
-                  ],
-                ),
+                        final newAlarm = Alarm(
+                          id: DateTime.now().millisecondsSinceEpoch % 10000000,
+                          alarmDateTime: alarmDateTime,
+                        );
+
+                        setState(() {
+                          alarms.add(newAlarm);
+                        });
+
+                        await _scheduleAlarm(newAlarm);
+                        await _saveAlarms();
+                      }
+                    },
+
+                    child: Text('Add Alarm', style: TextStyle(fontSize: 16)),
+                    // styling same as before...
+                  ),
+                ],
               ),
             ),
 

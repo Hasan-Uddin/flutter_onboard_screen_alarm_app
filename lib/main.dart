@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:onboard_screen_alarm_app/helpers/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
