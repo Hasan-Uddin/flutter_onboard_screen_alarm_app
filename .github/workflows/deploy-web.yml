@@ -19,7 +19,7 @@ jobs:
 
       - run: flutter config --enable-web
       - run: flutter pub get
-      - run: flutter build web --release --base-href "/flutter_onboard_screen_alarm_app/"
+      - run: flutter build web --release --base-href "/$(basename $GITHUB_REPOSITORY)/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
