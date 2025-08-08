@@ -1,5 +1,11 @@
 ## onboard_screen_alarm_app
-**A flutter project to demonstrate my problem-solving screen**
+**A flutter project to demonstrate my problem-solving skills**
+
+## Demo
+[🌐 View Live Web App](https://hasan-uddin.github.io/flutter_onboard_screen_alarm_app/)
+- note:
+  1. Onboarding screen loads only once. Delete cookies to initialize again.
+  2. The app was made heavily focused and tested on Android, so some functionality might not work for the web
 
 ## Objectives
 - To implement Onboarding screens (once-first-time)
