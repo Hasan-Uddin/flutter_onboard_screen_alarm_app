@@ -61,7 +61,7 @@ To run the project locally, follow these steps:
 1. **Clone the repository**
     ```bash
     git clone https://github.com/Hasan-Uddin/flutter_onboard_screen_alarm_app.git
-    cd flutter-bmi-calculator
+    cd flutter_onboard_screen_alarm_app
 3. **Install dependencies**
     ```bash
     flutter pub get
